@@ -12,7 +12,7 @@ const corsOptions = {
 };
 app.use(
   cors({
-    origin: "*",
+    origin: "https://idemagix-task.vercel.app/",
   })
 );
 // app.use(
@@ -30,7 +30,7 @@ async function main() {
     .then(() => console.log("database connected"));
 }
 
-app.get("/", () => {
+app.get("/", (req, res) => {
   res.json("hello world!");
 });
 app.use("/api", Routes);
