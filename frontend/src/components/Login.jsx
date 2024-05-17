@@ -15,10 +15,13 @@ const Login = () => {
       return;
     }
     try {
-      const res = await axios.post(`${import.meta.env.VITE_BASEURL}api/login`, {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        `${import.meta.env.VITE_BASEURL}/api/login`,
+        {
+          email,
+          password,
+        }
+      );
       if (res.data.role === "admin") {
         localStorage.setItem("authority", true);
         navigate("/admin-panel");
