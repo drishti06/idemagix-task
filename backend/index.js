@@ -10,7 +10,12 @@ const corsOptions = {
   origin: /\.onrender\.com$/,
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
 };
-app.use(cors({ origin: "https://idemagix-task.vercel.app/" }));
+app.use(
+  cors({
+    origin: "https://idemagix-task.vercel.app/",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  })
+);
 // app.use(
 //   cors({
 //     origin: "https://idemagix-task.onrender.com",
