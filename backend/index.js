@@ -12,8 +12,7 @@ const corsOptions = {
 };
 app.use(
   cors({
-    origin: "https://idemagix-task.vercel.app/",
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    origin: "*",
   })
 );
 // app.use(
@@ -31,6 +30,9 @@ async function main() {
     .then(() => console.log("database connected"));
 }
 
+app.get("/", () => {
+  res.json("hello world!");
+});
 app.use("/api", Routes);
 
 app.listen(process.env.PORT, () => {
