@@ -15,29 +15,19 @@ const Login = () => {
       return;
     }
     try {
-      if (localStorage.getItem("role")) {
-        if (localStorage.getItem("role") === "admin") {
-          localStorage.setItem("authority", true);
-          navigate("/admin-panel");
-        } else if (localStorage.getItem("role") === "instructor") {
-          localStorage.setItem("id", res.data._id);
-          navigate("/instructor");
-        }
-      } else {
-        const res = await axios.post(
-          `${import.meta.env.VITE_BASEURL}/api/login`,
-          { email, password }
-        );
-        if (res.data.role === "admin") {
-          localStorage.setItem("authority", true);
-          navigate("/admin-panel");
-        } else if (res.data.role === "instructor") {
-          localStorage.setItem("id", res.data._id);
-          localStorage.setItem("user", res.data.name);
-          navigate("/instructor");
-        }
-        setError("");
+      const res = await axios.post(
+        `${import.meta.env.VITE_BASEURL}/api/login`,
+        { email, password }
+      );
+      if (res.data.role === "admin") {
+        localStorage.setItem("authority", true);
+        navigate("/admin-panel");
+      } else if (res.data.role === "instructor") {
+        localStorage.setItem("id", res.data._id);
+        localStorage.setItem("user", res.data.name);
+        navigate("/instructor");
       }
+      setError("");
     } catch (err) {
       setError(err.response.data.message);
     }
