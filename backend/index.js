@@ -8,7 +8,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://idemagix-task.onrender.com/",
+    origin: "https://idemagix-task.onrender.com",
     methods: ["GET", "POST", "PUT", "PATCH"],
   })
 );
