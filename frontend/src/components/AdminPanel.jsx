@@ -36,7 +36,7 @@ const AdminPanel = () => {
         .get(`${import.meta.env.VITE_BASEURL}/api/courses`)
         .then((res) => setCourses(res.data));
     } else {
-      navigate("/login");
+      navigate("/");
     }
   }, [load]);
 

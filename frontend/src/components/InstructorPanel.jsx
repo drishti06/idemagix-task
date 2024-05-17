@@ -9,7 +9,7 @@ const InstructorPanel = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (!localStorage.getItem("id")) {
-      navigate("/login");
+      navigate("/");
     } else {
       axios
         .get(

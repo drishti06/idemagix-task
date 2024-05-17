@@ -11,13 +11,13 @@ import Login from "./components/Login";
 
 function SubApp() {
   const location = useLocation();
-  const excludeLocation = ["/login"];
+  const excludeLocation = ["/"];
   const excluedeNav = excludeLocation.includes(location.pathname);
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("id");
     localStorage.removeItem("authority");
-    navigate("/login");
+    navigate("/");
   };
   return (
     <>
@@ -37,7 +37,7 @@ function SubApp() {
       <Routes>
         <Route path="/admin-panel" element={<AdminPanel />} />
         <Route path="/instructor" element={<InstructorPanel />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
       </Routes>
     </>
   );
