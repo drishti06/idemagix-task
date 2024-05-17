@@ -6,12 +6,17 @@ import cors from "cors";
 import Routes from "./routes/routes.js";
 const app = express();
 
-app.use(
-  cors({
-    origin: "https://idemagix-task.onrender.com",
-    methods: ["GET", "POST", "PUT", "PATCH"],
-  })
-);
+const corsOptions = {
+  origin: /\.onrender\.com$/,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+};
+app.use(cors(corsOptions));
+// app.use(
+//   cors({
+//     origin: "https://idemagix-task.onrender.com",
+//     methods: ["GET", "POST", "PUT", "PATCH"],
+//   })
+// );
 app.use(express.json());
 
 main().catch((err) => console.log(err));
