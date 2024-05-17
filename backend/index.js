@@ -12,7 +12,7 @@ const corsOptions = {
 };
 app.use(
   cors({
-    origin: "https://idemagix-task.vercel.app/",
+    corsOptions,
   })
 );
 // app.use(
