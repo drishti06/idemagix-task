@@ -29,11 +29,11 @@ const AdminPanel = () => {
   useEffect(() => {
     if (localStorage.getItem("authority")) {
       axios
-        .get(`${import.meta.env.VITE_BASEURL}/api/instructors`)
+        .get(`${import.meta.env.VITE_BASEURL}api/instructors`)
         .then((res) => setInstructors(res.data));
 
       axios
-        .get(`${import.meta.env.VITE_BASEURL}/api/courses`)
+        .get(`${import.meta.env.VITE_BASEURL}api/courses`)
         .then((res) => setCourses(res.data));
     } else {
       navigate("/");
@@ -42,7 +42,7 @@ const AdminPanel = () => {
 
   const handleAddCourse = async () => {
     await axios
-      .post(`${import.meta.env.VITE_BASEURL}/api/courses`, newCourse)
+      .post(`${import.meta.env.VITE_BASEURL}api/courses`, newCourse)
       .then((res) => {
         setCourses([...courses, res.data]);
         setNewCourse({ name: "", level: "", description: "", image: "" });
@@ -52,7 +52,7 @@ const AdminPanel = () => {
   const handleAddLecture = async () => {
     await axios
       .post(
-        `${import.meta.env.VITE_BASEURL}/api/courses/${
+        `${import.meta.env.VITE_BASEURL}api/courses/${
           newLecture.courseId
         }/lectures`,
         newLecture
@@ -73,7 +73,7 @@ const AdminPanel = () => {
 
   const handleAddInstructor = async () => {
     await axios
-      .post(`${import.meta.env.VITE_BASEURL}/api/instructors`, newInstructor)
+      .post(`${import.meta.env.VITE_BASEURL}api/instructors`, newInstructor)
       .then((res) => {
         setLoad(true);
         setInstructors([...instructors, res.data]);
