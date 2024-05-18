@@ -1,23 +1,32 @@
 import mongoose from "mongoose";
+
 const userSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  password: String,
-  role: { type: String, default: "instructor" }, // 'admin' or 'instructor'
+  name: { type: String, required: true },
+  email: { type: String, required: true },
+  password: { type: String, required: true },
+  role: { type: String, default: "instructor", required: true }, // 'admin' or 'instructor'
 });
 
 const lectureSchema = new mongoose.Schema({
-  courseId: { type: mongoose.Schema.Types.ObjectId, ref: "Course" },
-  instructorId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  courseName: { type: String },
-  date: Date,
+  courseId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Course",
+    required: true,
+  },
+  instructorId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  courseName: { type: String, required: true },
+  date: { type: Date, required: true },
 });
 
 const courseSchema = new mongoose.Schema({
-  name: String,
-  level: String,
-  description: String,
-  image: String,
+  name: { type: String, required: true },
+  level: { type: String, required: true },
+  description: { type: String, required: true },
+  image: { type: String, required: true },
   lectures: [{ type: mongoose.Schema.Types.ObjectId, ref: "Lecture" }],
 });
 

@@ -15,12 +15,7 @@ app.use(
     corsOptions,
   })
 );
-// app.use(
-//   cors({
-//     origin: "https://idemagix-task.onrender.com",
-//     methods: ["GET", "POST", "PUT", "PATCH"],
-//   })
-// );
+
 app.use(express.json());
 
 main().catch((err) => console.log(err));

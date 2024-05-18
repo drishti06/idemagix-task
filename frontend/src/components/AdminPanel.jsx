@@ -1,4 +1,3 @@
-// src/components/AdminPanel.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -50,6 +49,8 @@ const AdminPanel = () => {
   };
 
   const handleAddLecture = async () => {
+    // Validate date
+
     await axios
       .post(
         `${import.meta.env.VITE_BASEURL}/api/courses/${
@@ -67,6 +68,7 @@ const AdminPanel = () => {
         });
       })
       .catch((err) => {
+        console.log(err);
         alert(err.response.data.message);
       });
   };
@@ -139,6 +141,7 @@ const AdminPanel = () => {
                 <input
                   className="border border-gray-500 px-2 py-1 rounded-md"
                   type="text"
+                  value={newCourse.name}
                   placeholder="Name"
                   onChange={(e) =>
                     setNewCourse({ ...newCourse, name: e.target.value })
@@ -149,6 +152,7 @@ const AdminPanel = () => {
                 <label htmlFor="level">Level</label>
                 <select
                   className="border border-gray-500 px-2 py-1 rounded-md"
+                  value={newCourse.level}
                   onChange={(e) =>
                     setNewCourse({ ...newCourse, level: e.target.value })
                   }
@@ -164,6 +168,7 @@ const AdminPanel = () => {
                 <input
                   className="border border-gray-500 px-2 py-1 rounded-md"
                   type="text"
+                  value={newCourse.description}
                   placeholder="Description"
                   onChange={(e) =>
                     setNewCourse({ ...newCourse, description: e.target.value })
@@ -174,6 +179,7 @@ const AdminPanel = () => {
                 <label htmlFor="image">Image</label>
                 <input
                   type="text"
+                  value={newCourse.image}
                   className="border border-gray-500 px-2 py-1 rounded-md"
                   placeholder="Image URL"
                   onChange={(e) =>
@@ -195,6 +201,7 @@ const AdminPanel = () => {
               <div className=" flex items-center gap-2 ">
                 <label htmlFor="courseName">Course</label>
                 <select
+                  value={newLecture.courseId}
                   className="border border-gray-500 px-2 py-1 rounded-md"
                   onChange={(e) =>
                     setNewLecture({
@@ -216,6 +223,7 @@ const AdminPanel = () => {
                 <label htmlFor="instructor">Instructor</label>
                 <select
                   className="border border-gray-500 px-2 py-1 rounded-md"
+                  value={newLecture.instructorId}
                   onChange={(e) =>
                     setNewLecture({
                       ...newLecture,
@@ -240,6 +248,8 @@ const AdminPanel = () => {
                 <input
                   className="border border-gray-500 px-2 py-1 rounded-md"
                   type="date"
+                  value={newLecture.date}
+                  min={new Date().toISOString().split("T")[0]}
                   onChange={(e) =>
                     setNewLecture({ ...newLecture, date: e.target.value })
                   }
